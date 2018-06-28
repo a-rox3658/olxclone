@@ -9,6 +9,7 @@ import java.util.List;
 public class Data extends Application{
     public static  List<User> users=new ArrayList<User>();
     public static List<Ads> all_ads=new ArrayList<Ads>();
+    public static String my_id;
 
     public Integer getnewuser_id(){
 
@@ -21,6 +22,7 @@ public class Data extends Application{
     }
 
     public Data() {
+        my_id=new String("0");
         users.add(new User("Abhay Gairola","8130728737",null,getnewuser_id().toString(),new ArrayList<String>(Arrays.asList("0", "1","2")),new ArrayList<String>(Arrays.asList("3", "8"))));
         users.add(new User("Pallav Garg","9999999999",null,getnewuser_id().toString(),new ArrayList<String>(Arrays.asList("3", "4")),new ArrayList<String>(Arrays.asList("0", "1"))));
         users.add(new User("Anil Ambani","8888888888",null,getnewuser_id().toString(),new ArrayList<String>(Arrays.asList("5")),new ArrayList<String>(Arrays.asList("0", "1"))));

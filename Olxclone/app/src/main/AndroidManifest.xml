@@ -3,14 +3,13 @@
     package="com.example.aman.olxclone">
 
     <application
+        android:name=".Data"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".Data"
-        >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -21,6 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Menu_MyAccount" />
+        <activity android:name=".Menu_MyWallet" />
+        <activity android:name=".Menu_MyAds" />
+        <activity android:name=".Menu_Wishlist" />
+        <activity android:name=".Home_Sell" />
+        <activity android:name=".ProductDesc"></activity>
     </application>
 
 </manifest>
