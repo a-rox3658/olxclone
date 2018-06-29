@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.aman.olxclone">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".Data"
         android:allowBackup="true"
@@ -20,12 +26,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Menu_MyAccount" />
-        <activity android:name=".Menu_MyWallet" />
-        <activity android:name=".Menu_MyAds" />
-        <activity android:name=".Menu_Wishlist" />
-        <activity android:name=".Home_Sell" />
-        <activity android:name=".ProductDesc"></activity>
+        <activity
+            android:name=".Menu_MyAccount"
+            android:label="My Account" />
+        <activity
+            android:name=".Menu_MyWallet"
+            android:label="My Wallet" />
+        <activity
+            android:name=".Menu_MyAds"
+            android:label="My Ads" />
+        <activity
+            android:name=".Menu_Wishlist"
+            android:label="My Wishlist" />
+        <activity
+            android:name=".Home_Sell"
+            android:label="Put Ad"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ProductDesc"
+            android:label="Product" />
+        <activity android:name=".MyAdDesc"></activity>
     </application>
 
 </manifest>

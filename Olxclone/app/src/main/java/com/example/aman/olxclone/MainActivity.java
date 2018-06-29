@@ -1,9 +1,12 @@
 package com.example.aman.olxclone;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -14,17 +17,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "MainActivity";
+    public  String m_Text="0" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Data a=(Data)getApplicationContext();
-        Log.d(TAG, "onCreate:"+a.users.toString()+a.all_ads.toString());
+
+//        Log.d(TAG, "onCreate:"+a.users.toString()+a.all_ads.toString());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -34,6 +40,25 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+
+
+        });
+        box();
+        Log.d(TAG, "onCreate:yo1 "+m_Text);
+
+
+        Log.d(TAG, "onCreate:yo2 "+m_Text);
+
+        Button Place_ad =(Button)findViewById(R.id.putad_button);
+        Place_ad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent inten = new Intent(MainActivity.this, Home_Sell.class);
+
+                startActivity(inten);
+
             }
         });
 
@@ -86,21 +111,30 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+
             Intent intent = new Intent(this, Menu_MyAccount.class);
 
             startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
+
+
+        } else if (id == R.id.nav_gallery) {
+
             Intent intent = new Intent(this, Menu_MyWallet.class);
 
             startActivity(intent);
 
-        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_slideshow) {
             Intent intent = new Intent(this,Menu_MyAds.class);
 
             startActivity(intent);
+
+        } else if (id == R.id.nav_manage) {
+            Intent intent = new Intent(this,Menu_Wishlist.class);
+
+            startActivity(intent);
+
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
@@ -110,5 +144,40 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public void box(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("LOGIN");
+
+// Set up the input
+        final EditText input = new EditText(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        builder.setView(input);
+
+// Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                m_Text = new String((input.getText()).toString());
+                Data a=(Data)getApplicationContext();
+                a.my_id=new String(m_Text);
+//                Log.d(TAG, "onCreate:yo "+m_Text);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+
+
+
     }
 }

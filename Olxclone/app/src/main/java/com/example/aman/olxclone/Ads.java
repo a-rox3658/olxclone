@@ -33,6 +33,9 @@ Integer likes;
     public void newLike()
     {this.likes++;}
 
+    public void newunLike()
+    {this.likes--;}
+
     public Integer getViews() {
         return views;
     }
