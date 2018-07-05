@@ -18,33 +18,55 @@ private MyAdsrvAdapter myAdsrvAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu__myads);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.myadsrv);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        recyclerView.addOnItemTouchListener(new MyAdsrvListener(this, recyclerView, this));
-
-        Data aa=(Data)getApplicationContext();
-        User bb=aa.users.get(Integer.parseInt(aa.my_id));
-        List<String> cc=bb.getAd_id();
-
-        myAdsrvAdapter = new MyAdsrvAdapter(this,cc,getApplicationContext());
-        recyclerView.setAdapter(myAdsrvAdapter);
+//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.myadsrv);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//
+//        recyclerView.addOnItemTouchListener(new MyAdsrvListener(this, recyclerView, this));
+//
+//        Data aa=(Data)getApplicationContext();
+//        User bb=aa.users.get(Integer.parseInt(aa.my_id));
+//        List<String> cc=bb.getAd_id();
+//
+//        myAdsrvAdapter = new MyAdsrvAdapter(this,cc,getApplicationContext());
+//        recyclerView.setAdapter(myAdsrvAdapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-//        MyAdsrvAdapter.loadNewData(cc);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.myadsrv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+        Data aa=(Data)getApplicationContext();
+        User bb=aa.users.get(Integer.parseInt(aa.my_id));
+        List<String> cc=bb.getAd_id();
+
+        if ((cc.size()==0)|| (cc==null)){}
+        else {
+        recyclerView.addOnItemTouchListener(new MyAdsrvListener(this, recyclerView, this));
+        myAdsrvAdapter = new MyAdsrvAdapter(this,cc,getApplicationContext());
+        recyclerView.setAdapter(myAdsrvAdapter);}
     }
 
     @Override
-   public void onItemClick(View view, int position){ Intent intent = new Intent(this, ProductDesc.class);
-//      intent.putExtra("AD_TRANSFER", myAdsrvAdapter.getAd(position));
-        startActivity(intent);};
+   public void onItemClick(View view, int position){
+      if (view.getId()==R.id.button)  {
+
+          Toast.makeText(Menu_MyAds.this, "long at position " + position, Toast.LENGTH_SHORT).show();
+      }
+
+
+        else{
+        Intent intent = new Intent(Menu_MyAds.this, MyAdDesc.class);
+     intent.putExtra("AD_TRANSFER", myAdsrvAdapter.getAd(position));
+        startActivity(intent);}
+                 };
     @Override
    public void onItemLongClick(View view, int position){
-        Toast.makeText(Menu_MyAds.this, "long at position " + position, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(Menu_MyAds.this, "long at position " + position, Toast.LENGTH_SHORT).show();
 
     }
 }

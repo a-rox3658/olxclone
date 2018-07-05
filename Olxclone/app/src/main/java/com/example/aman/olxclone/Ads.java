@@ -1,8 +1,9 @@
 package com.example.aman.olxclone;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Ads {
+public class Ads implements Serializable {
 String title;
 List<String> pictures;
 String description;

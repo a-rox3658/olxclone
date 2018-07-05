@@ -7,6 +7,7 @@
         android:required="true" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".Data"
@@ -45,7 +46,11 @@
         <activity
             android:name=".ProductDesc"
             android:label="Product" />
-        <activity android:name=".MyAdDesc"></activity>
+        <activity
+            android:name=".MyAdDesc"
+            android:label="My Ad" />
+        <activity android:name=".Menu_MyadsEdit"
+            android:label="Edit"/>
     </application>
 
 </manifest>

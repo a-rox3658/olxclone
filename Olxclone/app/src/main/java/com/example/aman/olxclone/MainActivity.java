@@ -2,7 +2,9 @@ package com.example.aman.olxclone;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -44,7 +46,18 @@ public class MainActivity extends AppCompatActivity
 
 
         });
-        box();
+
+
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false);
+        if(!previouslyStarted) {
+            SharedPreferences.Editor edit = prefs.edit();
+            edit.putBoolean(getString(R.string.pref_previously_started), Boolean.TRUE);
+            edit.commit();
+            box();
+        }
+
         Log.d(TAG, "onCreate:yo1 "+m_Text);
 
 
@@ -138,6 +151,16 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+            boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false);
+            if(previouslyStarted) {
+                SharedPreferences.Editor edit = prefs.edit();
+                edit.putBoolean(getString(R.string.pref_previously_started), Boolean.FALSE);
+                edit.commit();
+                Intent intent = new Intent(this,MainActivity.class);
+
+                startActivity(intent);
+            }
 
         }
 

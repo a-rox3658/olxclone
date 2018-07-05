@@ -9,6 +9,15 @@ public class User {
     String user_id;
     List<String> ad_id;
     List<String> wish_id;
+    String adsViews;
+    String createdOn;
+    String isActive;
+    String userType;
+    String verfied;
+    String adsNo;
+
+
+
 
     public User(String profilename, String phoneno, String profilephoto, String user_id, List<String> ad_id,List<String> wish_id) {
         this.profilename = profilename;
@@ -17,6 +26,22 @@ public class User {
         this.user_id = user_id;
         this.ad_id = ad_id;
         this.wish_id=wish_id;
+    }
+
+    public String getAdsNo() {
+        return adsNo;
+    }
+
+    public void setAdsNo(String adsNo) {
+        this.adsNo = adsNo;
+    }
+
+    public String getVerfied() {
+        return verfied;
+    }
+
+    public void setVerfied(String verfied) {
+        this.verfied = verfied;
     }
 
     public List<String> getAd_id() {
@@ -77,6 +102,37 @@ public class User {
     public void addwish_id(String newwish_id) {
         this.ad_id.add(newwish_id);
     }
+    public String getAdsViews() {
+        return adsViews;
+    }
+
+    public void setAdsViews(String adsViews) {
+        this.adsViews = adsViews;
+    }
+
+    public String getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public String getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 
 
     @Override
@@ -87,6 +143,13 @@ public class User {
                 ", profilephoto='" + profilephoto + '\'' +
                 ", user_id='" + user_id + '\'' +
                 ", ad_id=" + ad_id +
+                ", wish_id=" + wish_id +
+                ", adsViews='" + adsViews + '\'' +
+                ", createdOn='" + createdOn + '\'' +
+                ", isActive='" + isActive + '\'' +
+                ", userType='" + userType + '\'' +
+                ", verfied='" + verfied + '\'' +
+                ", adsNo='" + adsNo + '\'' +
                 '}';
     }
 }

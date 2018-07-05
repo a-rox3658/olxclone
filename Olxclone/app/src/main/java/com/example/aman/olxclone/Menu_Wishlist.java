@@ -33,7 +33,7 @@ public class Menu_Wishlist extends AppCompatActivity implements MyWishListener.O
 
     @Override
     public void onItemClick(View view, int position){ Intent intent = new Intent(this, ProductDesc.class);
-//      intent.putExtra("AD_TRANSFER", myAdsrvAdapter.getAd(position));
+     intent.putExtra("AD_TRANSFER", myAdsrvAdapter.getAd(position));
         startActivity(intent);};
     @Override
     public void onItemLongClick(View view, int position){

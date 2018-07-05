@@ -6,6 +6,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="pref_previously_started"></string>
     <string-array name="categories">
         <item>Cars</item>
         <item>Books</item>
