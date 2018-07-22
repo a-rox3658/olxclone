@@ -1,11 +1,13 @@
-package com.example.aman.olxclone;
+package com.example.aman.olxclone.Myads;
 
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
+
+import com.example.aman.olxclone.DummyData.Ads;
+import com.example.aman.olxclone.R;
 
 public class MyAdDesc extends AppCompatActivity {
 private TextView title ;

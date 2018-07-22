@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.aman.olxclone.DummyData.Ads;
+import com.example.aman.olxclone.DummyData.Data;
+
 public class ProductDesc extends AppCompatActivity {
     private TextView title ;
     private TextView desc;

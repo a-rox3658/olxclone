@@ -17,4 +17,5 @@
         <item>Bike</item>
         <item>Misc</item>
     </string-array>
+    <string name="title_activity_account__edit">Account_Edit</string>
 </resources>

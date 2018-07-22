@@ -1,4 +1,4 @@
-package com.example.aman.olxclone;
+package com.example.aman.olxclone.MyWishlist;
 
 import android.content.Context;
 import android.support.v4.view.GestureDetectorCompat;
@@ -8,7 +8,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class MyAdsrvListener extends RecyclerView.SimpleOnItemTouchListener {
+public class MyWishListener extends RecyclerView.SimpleOnItemTouchListener {
     private static final String TAG = "RecyclerItemClickListen";
 
     interface OnRecyclerClickListener {
@@ -19,7 +19,7 @@ public class MyAdsrvListener extends RecyclerView.SimpleOnItemTouchListener {
     private final OnRecyclerClickListener mListener;
     private final GestureDetectorCompat mGestureDetector;
 
-    public MyAdsrvListener(Context context, final RecyclerView recyclerView, OnRecyclerClickListener listener) {
+    public MyWishListener(Context context, final RecyclerView recyclerView, OnRecyclerClickListener listener) {
         mListener = listener;
         mGestureDetector = new GestureDetectorCompat(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
@@ -58,5 +58,6 @@ public class MyAdsrvListener extends RecyclerView.SimpleOnItemTouchListener {
             return false;
         }
     }
+
 
 }

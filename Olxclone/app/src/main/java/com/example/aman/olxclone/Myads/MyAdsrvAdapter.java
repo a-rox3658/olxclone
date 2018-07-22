@@ -1,8 +1,6 @@
-package com.example.aman.olxclone;
+package com.example.aman.olxclone.Myads;
 
 import android.content.Context;
-import android.content.Intent;
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,19 +11,22 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.aman.olxclone.DummyData.Ads;
+import com.example.aman.olxclone.R;
+
 import java.util.List;
 
 public class MyAdsrvAdapter extends RecyclerView.Adapter<MyAdsrvAdapter.MyViewHolder> {
     private Context mContext;
-    private List<String>mAds;
-     private List<Ads>Adss;
+    private List<Ads>mAds;
+//     private List<>Adss;
     private static final String TAG = "MainActivity";
 
 
-    public MyAdsrvAdapter(Context mContext, List<String> mAds,Context mApp) {
+    public MyAdsrvAdapter(Context mContext, List<Ads> mAds) {
         this.mContext = mContext;
         this.mAds = mAds;
-        this.Adss=((Data) mApp).all_ads;
+//        this.Adss=((Data) mApp).all_ads;
 //        Log.d(TAG, "MyAdsrvAdapter: "+Adss.toString());
 
     }
@@ -34,15 +35,16 @@ public class MyAdsrvAdapter extends RecyclerView.Adapter<MyAdsrvAdapter.MyViewHo
     @Override
     public MyAdsrvAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        if((mAds == null) || (mAds.size() == 0)) {
-            view= LayoutInflater.from(parent.getContext()).inflate(R.layout.empty_blank,parent,false);
-            view.setClickable(false);
-        }
-       else{
-        view= LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_myads_rvlayout,parent,false);
-//                Log.d(TAG, "createview ");
+        if((mAds == null) || (mAds.size() == 0)) {}
+//            view= LayoutInflater.from(parent.getContext()).inflate(R.layout.empty_blank,parent,false);
+//            view.setClickable(false);
 
-       }
+//       else{
+
+      view= LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_myads_rvlayout,parent,false);
+////                Log.d(TAG, "createview ");
+//
+//       }
         return new MyViewHolder(view);
     }
 
@@ -51,23 +53,23 @@ public class MyAdsrvAdapter extends RecyclerView.Adapter<MyAdsrvAdapter.MyViewHo
         if((mAds == null) || (mAds.size() == 0)) {
 
         } else {
-            Ads aItem = Adss.get(Integer.parseInt(mAds.get(position)));
+            Ads aItem = mAds.get(position);
 //        Log.d(TAG, "MyAdsrvAdapter: "+aItem.toString());
 
-            holder.Title.setText(aItem.getTitle());
-            holder.Views.append(aItem.getViews().toString());
+if(!aItem.getTitle().equals(null)) {           holder.Title.setText(aItem.getTitle());}
+            holder.Views.setText("Views:"+aItem.getViews().toString());
 //            holder.AmountEarned.setText(aItem.getAmountEarned());
       holder.Remove.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
               Log.d(TAG, "\n dfgdonClickyyyyyyyy:yyyyyyyyy \n");
           Toast.makeText(mContext,"Removed",Toast.LENGTH_SHORT).show();
-          Adss.set(Integer.parseInt(mAds.get(position)),null);
-          mAds.remove(position);
+//          Adss.set(Integer.parseInt(mAds.get(position)),null);
+//          mAds.remove(position);
 //               Adss.remove(Adss.get(Integer.parseInt(mAds.get(position))));
-          Intent intent = new Intent(mContext, MainActivity.class);
+//          Intent intent = new Intent(mContext, MainActivity.class);
 //            intent.putExtra("AD_TRANSFER", myAdsrvAdapter.getAd(position));
-            v.getContext().startActivity(intent);
+//            v.getContext().startActivity(intent);
 //          Log.d(TAG, "onClick: "+Adss.get(0).toString());
 
 
@@ -79,9 +81,9 @@ public class MyAdsrvAdapter extends RecyclerView.Adapter<MyAdsrvAdapter.MyViewHo
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(mContext,"Edit",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(mContext, Menu_MyadsEdit.class);
-           intent.putExtra("AD_TRANSFER",Adss.get(Integer.parseInt(mAds.get(position))));
-                    v.getContext().startActivity(intent);
+//                    Intent intent = new Intent(mContext, Menu_MyadsEdit.class);
+//           intent.putExtra("AD_TRANSFER",mAds.get(position));
+//                    v.getContext().startActivity(intent);
                 }
             });
         }
@@ -93,12 +95,12 @@ public class MyAdsrvAdapter extends RecyclerView.Adapter<MyAdsrvAdapter.MyViewHo
          return ((mAds != null) && (mAds.size() !=0) ? mAds.size() : 1);
     }
 
-    void loadNewData(List<String> newmyads) {
+    void loadNewData(List<Ads> newmyads) {
         mAds = newmyads;
         notifyDataSetChanged();
     }
     public Ads getAd(int position) {
-        return ((mAds != null) && (mAds.size() !=0) ? Adss.get(Integer.parseInt(mAds.get(position))): null);
+        return ((mAds != null) && (mAds.size() !=0) ? mAds.get(position): null);
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder{

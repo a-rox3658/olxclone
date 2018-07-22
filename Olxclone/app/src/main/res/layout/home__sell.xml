@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home_Sell">
+    tools:context=".Home_sell.Home_Sell">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -146,8 +146,9 @@
             android:background="@android:drawable/editbox_background_normal"
             android:ems="10"
             android:hint="Demand Price"
-            android:inputType="textPersonName"
-            android:maxLength="15"
+            android:inputType="numberDecimal"
+
+            android:maxLength="10"
             app:layout_constraintBottom_toTopOf="@+id/button7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.1"

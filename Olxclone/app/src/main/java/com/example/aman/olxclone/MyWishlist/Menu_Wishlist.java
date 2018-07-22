@@ -1,4 +1,4 @@
-package com.example.aman.olxclone;
+package com.example.aman.olxclone.MyWishlist;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.aman.olxclone.DummyData.Data;
+import com.example.aman.olxclone.DummyData.User;
+import com.example.aman.olxclone.ProductDesc;
+import com.example.aman.olxclone.R;
 
 import java.util.List;
 

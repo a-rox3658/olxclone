@@ -1,9 +1,12 @@
-package com.example.aman.olxclone;
+package com.example.aman.olxclone.DummyData;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
    String profilename;
+   String firstname;
+   String lastname;
    String phoneno;
     String profilephoto;
     String user_id;
@@ -15,6 +18,11 @@ public class User {
     String userType;
     String verfied;
     String adsNo;
+    String refercode;
+    String referCash;
+    String earnedCash;
+    String password;
+
 
 
 
@@ -26,6 +34,54 @@ public class User {
         this.user_id = user_id;
         this.ad_id = ad_id;
         this.wish_id=wish_id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRefercode() {
+        return refercode;
+    }
+
+    public void setRefercode(String refercode) {
+        this.refercode = refercode;
+    }
+
+    public String getReferCash() {
+        return referCash;
+    }
+
+    public void setReferCash(String referCash) {
+        this.referCash = referCash;
+    }
+
+    public String getEarnedCash() {
+        return earnedCash;
+    }
+
+    public void setEarnedCash(String earnedCash) {
+        this.earnedCash = earnedCash;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getAdsNo() {
@@ -139,6 +195,8 @@ public class User {
     public String toString() {
         return "User{" +
                 "profilename='" + profilename + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
                 ", phoneno='" + phoneno + '\'' +
                 ", profilephoto='" + profilephoto + '\'' +
                 ", user_id='" + user_id + '\'' +
@@ -150,6 +208,10 @@ public class User {
                 ", userType='" + userType + '\'' +
                 ", verfied='" + verfied + '\'' +
                 ", adsNo='" + adsNo + '\'' +
+                ", refercode='" + refercode + '\'' +
+                ", referCash='" + referCash + '\'' +
+                ", earnedCash='" + earnedCash + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

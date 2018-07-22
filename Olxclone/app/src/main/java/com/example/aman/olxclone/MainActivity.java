@@ -1,5 +1,6 @@
 package com.example.aman.olxclone;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,11 +22,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.aman.olxclone.DummyData.Data;
+import com.example.aman.olxclone.DummyData.User;
+import com.example.aman.olxclone.Home_sell.Home_Sell;
+import com.example.aman.olxclone.MyWallet.Menu_MyWallet;
+import com.example.aman.olxclone.MyWishlist.Menu_Wishlist;
+import com.example.aman.olxclone.Myaccount.GetUserJsonData;
+import com.example.aman.olxclone.Myaccount.Menu_MyAccount;
+import com.example.aman.olxclone.Myads.Menu_MyAds;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener ,GetUserJsonData.OnDataAvailable{
     private static final String TAG = "MainActivity";
     public  String m_Text="0" ;
+    ProgressDialog loading = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,27 +50,34 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//
+//
+//        });
 
 
-        });
+//
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+//        boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false);
+//        if(!previouslyStarted) {
+//            SharedPreferences.Editor edit = prefs.edit();
+//            edit.putBoolean(getString(R.string.pref_previously_started), Boolean.TRUE);
+//            edit.commit();
+//            box();
+//        }
 
 
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false);
-        if(!previouslyStarted) {
-            SharedPreferences.Editor edit = prefs.edit();
-            edit.putBoolean(getString(R.string.pref_previously_started), Boolean.TRUE);
-            edit.commit();
-            box();
-        }
+        loading = new ProgressDialog(this);
+        loading.setCancelable(true);
+        loading.setMessage("Loading....");
+        loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        loading.show();
 
         Log.d(TAG, "onCreate:yo1 "+m_Text);
 
@@ -83,6 +104,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Data x =(Data)getApplicationContext();
+
+        GetUserJsonData getUserRawData=new GetUserJsonData(this,"http://askrealone.com/mydealoffers/user_details.php",x.my_id);
+        getUserRawData.execute(" ");
     }
 
     @Override
@@ -203,4 +233,29 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+
+    @Override
+    public void onDataAvailable(User data, DownloadStatus status) {
+        if(status == DownloadStatus.OK){
+
+
+            TextView name =(TextView)findViewById(R.id.TextName);
+            TextView no =(TextView)findViewById(R.id.textView);
+             name.setText(data.getProfilename());
+             no.setText(data.getPhoneno());
+            ImageView im=(ImageView)findViewById(R.id.imageViewxx);
+
+            if((data.getProfilephoto() == null) ) {
+            im.setImageResource(R.mipmap.deft_imgt_round);
+        } else {
+
+            Picasso.with(this).load(data.getProfilephoto())
+                    .error(R.mipmap.deft_imgt_round)
+                    .placeholder(R.mipmap.deft_imgt_round)
+                    .into(im);
+
+        }
+        loading.dismiss();
+
+    }}
 }

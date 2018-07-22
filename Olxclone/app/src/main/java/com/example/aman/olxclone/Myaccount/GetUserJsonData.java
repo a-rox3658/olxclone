@@ -1,14 +1,15 @@
-package com.example.aman.olxclone;
+package com.example.aman.olxclone.Myaccount;
 
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.json.JSONArray;
+import com.example.aman.olxclone.DownloadStatus;
+import com.example.aman.olxclone.DummyData.User;
+import com.example.aman.olxclone.GetUserRawData;
+
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class GetUserJsonData extends AsyncTask<String,Void,User>implements GetUserRawData.OnDownloadComplete {
 
@@ -22,7 +23,7 @@ public class GetUserJsonData extends AsyncTask<String,Void,User>implements GetUs
     private String mUserId;
     private User userMe = null;
 
-    interface OnDataAvailable {
+    public  interface OnDataAvailable {
         void onDataAvailable(User data, DownloadStatus status);
     }
     public GetUserJsonData(OnDataAvailable callBack, String baseURL, String userId) {
@@ -66,10 +67,12 @@ public class GetUserJsonData extends AsyncTask<String,Void,User>implements GetUs
 
     private String createUri(String mUserId) {
         Log.d(TAG, "createUri starts");
-
+        Log.d(TAG, "createUri: "+Uri.parse(mBaseURL).buildUpon().appendQueryParameter("user_id", mUserId).build().toString());
         return Uri.parse(mBaseURL).buildUpon()
                 .appendQueryParameter("user_id", mUserId)
                 .build().toString();
+
+
     }
     @Override
     public void onDownloadComplete(String data, DownloadStatus status) {
@@ -83,6 +86,11 @@ public class GetUserJsonData extends AsyncTask<String,Void,User>implements GetUs
                   if (jsonData.getString("status").equalsIgnoreCase("true"))
                   {JSONObject result =jsonData.getJSONObject("result");
                       userMe.setProfilename(result.getString("user_name"));
+                      userMe.setFirstname(result.getString("first_name"));
+                      userMe.setLastname(result.getString("last_name"));
+                      userMe.setReferCash(result.getString("refer_cash"));
+                      userMe.setRefercode(result.getString("referral_code"));
+                      userMe.setEarnedCash(result.getString("earned_cash"));
 
                       userMe.setPhoneno(result.getString("mobile"));
                       userMe.setProfilephoto(result.getString("image"));
@@ -92,6 +100,7 @@ public class GetUserJsonData extends AsyncTask<String,Void,User>implements GetUs
                       userMe.setCreatedOn(result.getString("created_on"));
                       userMe.setIsActive(result.getString("is_active"));
                       userMe.setUserType(result.getString("user_type"));
+                      userMe.setPassword(result.getString("password"));
                   }
 
 //

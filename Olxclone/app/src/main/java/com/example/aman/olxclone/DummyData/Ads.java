@@ -1,4 +1,4 @@
-package com.example.aman.olxclone;
+package com.example.aman.olxclone.DummyData;
 
 import java.io.Serializable;
 import java.util.List;

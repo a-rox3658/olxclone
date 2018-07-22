@@ -1,22 +1,27 @@
-package com.example.aman.olxclone;
+package com.example.aman.olxclone.Home_sell;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-public class Home_Sell extends AppCompatActivity {
+import com.example.aman.olxclone.DownloadStatus;
+import com.example.aman.olxclone.MainActivity;
+import com.example.aman.olxclone.R;
+
+public class Home_Sell extends AppCompatActivity implements Home_selljsondata.OnDataAvailable{
 ImageView image1,image2,image3;
-    Button add1,add2,add3;int butt=0;
+    Button add1,add2,add3,put;int butt=0;
+    EditText title,descp,pri;
     String titl;
     String desc;
     String catg;
@@ -25,6 +30,7 @@ ImageView image1,image2,image3;
     String Price;
     String Views="0";
     String Likes="0";
+    private static final String TAG = "cool";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +38,7 @@ ImageView image1,image2,image3;
         setContentView(R.layout.home__sell);
 
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.categories, android.R.layout.simple_spinner_item);
@@ -46,8 +52,10 @@ ImageView image1,image2,image3;
         image1=(ImageView)findViewById(R.id.image1) ;
         image2=(ImageView)findViewById(R.id.image2) ;
         image3=(ImageView)findViewById(R.id.image3) ;
-
-
+        title=(EditText)findViewById(R.id.editText2);
+        descp=(EditText)findViewById(R.id.editText4);
+        pri=(EditText)findViewById(R.id.editText5);
+        put=(Button)findViewById(R.id.button7) ;
         View.OnClickListener x=new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,8 +74,17 @@ ImageView image1,image2,image3;
 
 
 
+
+
+
+
+Home_selljsondata aaa=new Home_selljsondata(Home_Sell.this,"http://askrealone.com/mydealoffers/create_ad.php",title.getText().toString(),descp.getText().toString(),"1",String.valueOf(spinner.getSelectedItemPosition()),"delhi",pri.getText().toString());
+
+aaa.execute(" ");
+
             }
         };
+        put.setOnClickListener(y);
 
     }
 
@@ -85,5 +102,16 @@ ImageView image1,image2,image3;
 
     }
 
+    @Override
+    public void onDataAvailable(String data, DownloadStatus status) {
+       Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
+       if(data.equalsIgnoreCase("Ad Added Successfully")){
+           Intent intent = new Intent(this,MainActivity.class);
 
+           startActivity(intent);
+
+       }
+        Log.d(TAG, "onDataAvailable: "+data);
+
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.aman.olxclone;
+package com.example.aman.olxclone.MyWishlist;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.aman.olxclone.DummyData.Ads;
+import com.example.aman.olxclone.DummyData.Data;
+import com.example.aman.olxclone.R;
 
 import java.util.List;
 

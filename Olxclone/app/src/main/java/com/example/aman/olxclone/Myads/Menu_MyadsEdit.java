@@ -1,4 +1,4 @@
-package com.example.aman.olxclone;
+package com.example.aman.olxclone.Myads;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.aman.olxclone.DummyData.Ads;
+import com.example.aman.olxclone.R;
 
 public class Menu_MyadsEdit extends AppCompatActivity {
     ImageView image1, image2, image3;

@@ -1,4 +1,4 @@
-package com.example.aman.olxclone;
+package com.example.aman.olxclone.DummyData;
 
 import android.app.Application;
 
@@ -22,7 +22,7 @@ public class Data extends Application{
     }
 
     public Data() {
-        my_id=new String("0");
+        my_id=new String("1");
         users.add(new User("Abhay Gairola","8130728737",null,getnewuser_id().toString(),new ArrayList<String>(Arrays.asList("0", "1","2")),new ArrayList<String>(Arrays.asList("3", "8"))));
         users.add(new User("Pallav Garg","9999999999",null,getnewuser_id().toString(),new ArrayList<String>(Arrays.asList("3", "4")),new ArrayList<String>(Arrays.asList("0", "1"))));
         users.add(new User("Anil Ambani","8888888888",null,getnewuser_id().toString(),new ArrayList<String>(Arrays.asList("5")),new ArrayList<String>(Arrays.asList("0", "1"))));
