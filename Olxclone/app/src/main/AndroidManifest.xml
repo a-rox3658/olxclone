@@ -8,6 +8,10 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
 
     <application
         android:name=".DummyData.Data"
@@ -29,50 +33,53 @@
         </activity>
         <activity
             android:name=".Myaccount.Menu_MyAccount"
-            android:parentActivityName=".MainActivity"
-
-            android:label="My Account" />
+            android:label="My Account"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MyWallet.Menu_MyWallet"
-            android:parentActivityName=".MainActivity"
-            android:label="My Wallet" />
+            android:label="My Wallet"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Myads.Menu_MyAds"
-            android:parentActivityName=".MainActivity"
-            android:label="My Ads" />
+            android:label="My Ads"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MyWishlist.Menu_Wishlist"
-            android:parentActivityName=".MainActivity"
-            android:label="My Wishlist" />
+            android:label="My Wishlist"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Home_sell.Home_Sell"
-            android:parentActivityName=".MainActivity"
             android:label="Put Ad"
+            android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ProductDesc"
             android:label="Product" />
         <activity
             android:name=".Myads.MyAdDesc"
-            android:parentActivityName=".Myads.Menu_MyAds"
-            android:label="My Ad" />
+            android:label="My Ad"
+            android:parentActivityName=".Myads.Menu_MyAds" />
         <activity
             android:name=".Myads.Menu_MyadsEdit"
-            android:parentActivityName=".Myads.Menu_MyAds"
-            android:label="Edit" />
+            android:label="Edit"
+            android:parentActivityName=".Myads.Menu_MyAds" />
         <activity
             android:name=".Myaccount.MyaccountEdit"
-            android:parentActivityName=".Myaccount.Menu_MyAccount"
-            android:label="Edit Account Details" />
-        <activity android:name=".Myaccount.Editname"
-            android:parentActivityName=".Myaccount.MyaccountEdit"
-            android:label="Edit Name" />
-        <activity android:name=".Myaccount.Editpassword"
-            android:parentActivityName=".Myaccount.MyaccountEdit"
-            android:label="Edit Password"/>
-        <activity android:name=".Myaccount.EditProfilepic"
-            android:parentActivityName=".Myaccount.MyaccountEdit"
-            android:label="Edit Profile Picture"></activity>
+            android:label="Edit Account Details"
+            android:parentActivityName=".Myaccount.Menu_MyAccount" />
+        <activity
+            android:name=".Myaccount.Editname"
+            android:label="Edit Name"
+            android:parentActivityName=".Myaccount.MyaccountEdit" />
+        <activity
+            android:name=".Myaccount.Editpassword"
+            android:label="Edit Password"
+            android:parentActivityName=".Myaccount.MyaccountEdit" />
+        <activity
+            android:name=".Myaccount.EditProfilepic"
+            android:label="Edit Profile Picture"
+            android:parentActivityName=".Myaccount.MyaccountEdit" />
+        <activity android:name=".Back_pop"></activity>
     </application>
 
 </manifest>

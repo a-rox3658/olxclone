@@ -2,14 +2,18 @@ package com.example.aman.olxclone.Myaccount;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.aman.olxclone.Back_pop;
 import com.example.aman.olxclone.DownloadStatus;
 import com.example.aman.olxclone.DummyData.Data;
 import com.example.aman.olxclone.DummyData.User;
@@ -93,6 +97,25 @@ User trans;
         }
         loading.dismiss();
 
+
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exitByBackKey();
+
+            //moveTaskToBack(false);
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    protected void exitByBackKey() {
+
+        Back_pop cdd = new Back_pop(MyaccountEdit.this);
+        cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        cdd.show();
 
     }
 }

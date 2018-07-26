@@ -3,6 +3,8 @@ package com.example.aman.olxclone;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.aman.olxclone.DummyData.Ads;
@@ -18,6 +20,7 @@ public class ProductDesc extends AppCompatActivity {
 //    private TextView categ;
     private TextView loc;
     private TextView Postedby;
+    private ImageButton liker;
 
 
     @Override
@@ -32,7 +35,14 @@ public class ProductDesc extends AppCompatActivity {
         views=(TextView)findViewById(R.id.textView21);
         likes=(TextView)findViewById(R.id.textView22);
         loc=(TextView)findViewById(R.id.textView23);
+        liker=(ImageButton)findViewById(R.id.imageButton5);
+liker.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        liker.setImageResource(R.mipmap.fav_hrt_check);
 
+    }
+});
 
         Data a=(Data)getApplicationContext();
 

@@ -2,10 +2,13 @@ package com.example.aman.olxclone.Home_sell;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,8 +17,10 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.aman.olxclone.Back_pop;
 import com.example.aman.olxclone.DownloadStatus;
 import com.example.aman.olxclone.MainActivity;
+import com.example.aman.olxclone.Myaccount.Menu_MyAccount;
 import com.example.aman.olxclone.R;
 
 public class Home_Sell extends AppCompatActivity implements Home_selljsondata.OnDataAvailable{
@@ -112,6 +117,24 @@ aaa.execute(" ");
 
        }
         Log.d(TAG, "onDataAvailable: "+data);
+
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exitByBackKey();
+
+            //moveTaskToBack(false);
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    protected void exitByBackKey() {
+
+        Back_pop cdd = new Back_pop(Home_Sell.this);
+        cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        cdd.show();
 
     }
 }

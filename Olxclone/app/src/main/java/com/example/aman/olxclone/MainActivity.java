@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -35,17 +36,34 @@ import com.example.aman.olxclone.Myaccount.Menu_MyAccount;
 import com.example.aman.olxclone.Myads.Menu_MyAds;
 import com.squareup.picasso.Picasso;
 
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener ,GetUserJsonData.OnDataAvailable{
     private static final String TAG = "MainActivity";
     public  String m_Text="0" ;
     ProgressDialog loading = null;
+    User lol;
+    Data x;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+         x =(Data)getApplicationContext();
 //        Log.d(TAG, "onCreate:"+a.users.toString()+a.all_ads.toString());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -104,12 +122,33 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+
+
+
+
+
+
+
+
+
+
+
+            //
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Data x =(Data)getApplicationContext();
+
+
+
+
+
+
+
+
+
 
         GetUserJsonData getUserRawData=new GetUserJsonData(this,"http://askrealone.com/mydealoffers/user_details.php",x.my_id);
         getUserRawData.execute(" ");
@@ -179,6 +218,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
+            Intent sendIntend=new Intent();
+            sendIntend.setAction(Intent.ACTION_SEND);
+            sendIntend.putExtra(Intent.EXTRA_TEXT,"hey check my app "+"<link>"+"with this refer code "+lol.getRefercode());
+            sendIntend.setType("text/plain");
+            startActivity(sendIntend);
 
         } else if (id == R.id.nav_send) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
@@ -237,7 +281,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onDataAvailable(User data, DownloadStatus status) {
         if(status == DownloadStatus.OK){
-
+           lol=data;
 
             TextView name =(TextView)findViewById(R.id.TextName);
             TextView no =(TextView)findViewById(R.id.textView);

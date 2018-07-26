@@ -2,14 +2,17 @@ package com.example.aman.olxclone.Myaccount;
 
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.util.Log;
 
 import com.example.aman.olxclone.DownloadStatus;
+import com.example.aman.olxclone.DummyData.Data;
 import com.example.aman.olxclone.DummyData.User;
 import com.example.aman.olxclone.GetUserRawData;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 public class GetUserJsonData extends AsyncTask<String,Void,User>implements GetUserRawData.OnDownloadComplete {
 
@@ -22,6 +25,7 @@ public class GetUserJsonData extends AsyncTask<String,Void,User>implements GetUs
     private String mBaseURL;
     private String mUserId;
     private User userMe = null;
+
 
     public  interface OnDataAvailable {
         void onDataAvailable(User data, DownloadStatus status);
@@ -55,12 +59,17 @@ public class GetUserJsonData extends AsyncTask<String,Void,User>implements GetUs
     @Override
     protected User doInBackground(String... params) {
         Log.d(TAG, "doInBackground starts");
+
         String destinationUri = createUri(mUserId);
 
         GetUserRawData getRawData = new GetUserRawData(this);
         getRawData.runInSameThread(destinationUri);
         Log.d(TAG, "doInBackground ends");
-        return userMe;
+
+
+
+return userMe;
+
     }
 
 
